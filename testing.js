@@ -12,11 +12,9 @@ client.on('message', message => {
 	console.log(message.content)
 	if (message.content === 'test')
 		message.channel.send('confirmed')
-	switch (message.content.includes("😬"||"😀"||"😁")){
-	  default:
+	if (message.content.includes("😬"||"😀"||"😁")){
 	  	message.delete(1000); //Supposed to delete message
-			message.channel.send("fuck you don't send emojis :rage:");
-			break;
+			message.channel.send("fuck you don't send emojis");
 }});
 
 client.login(auth.token);
