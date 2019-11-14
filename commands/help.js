@@ -9,7 +9,7 @@ thumbnail: {
 },
 fields: [{
   name: "Command List",
-  value: "**snipe**\nDisplays the last deleted Message.\n**snipeedit**\nDisplays the last edited Message and its original Text.\n**e!help**\nDisplays this message.\n**e!info**\nDisplays information about the bot and Server.\n**e!ping**\nDisplays current ping of the bot to discord and its API.\n**e!sayas [mention] [input]**\nPretends to be the mentioned user (WIP?).\n**e!changeprefix <desired prefix>*** \nChanges this bots prefix.\n ",
+  value: "**snipe**\nDisplays the last deleted Message.\n**snipeedit**\nDisplays the last edited Message and its original Text.\n**<prefix> help**\nDisplays this message.\n**<prefix> info**\nDisplays information about the bot and Server.\n**<prefix> ping**\nDisplays current ping of the bot to discord and its API.\n**<prefix> sayas [user] [input]**\nPretends to be the mentioned user (WIP?).\n**<prefix> changeprefix [desired prefix]*** \nChanges this bots prefix.\n**<prefix> userinfo [user]**\n Displays information about mentioned User. Leave blank for your own.\n**<prefix> avatar [user]**\n Sends you the avatar of the mentioned user. Don't mention for your own. ",
 },
 ],
 }
