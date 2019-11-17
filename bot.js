@@ -35,17 +35,25 @@ client.on("messageDelete", (messageDelete) => {
 
 
 client.on('message', async  message => {
+
 	//let prefix = config.prefix;
 	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
-	let prefix = prefixes[message.guild.id].prefixes
+
 	console.log(message.content + "  |  ","Channel: #"+message.channel.name,"  | Server: " + message.guild.name)
-	const args = message.content.slice(prefix.length).split(' ');
-	const command = args.shift().toLowerCase();
 	var taggedUser = message.mentions.users.first();
 	if(!prefixes[message.guild.id]) {
 		prefixes[message.guild.id] = {
 			prefixes: config.prefix
 		}}
+	let prefix = prefixes[message.guild.id].prefixes
+	const args = message.content.slice(prefix.length).split(' ');
+	const command = args.shift().toLowerCase();
+	if(command === "avatar") {
+		client.commands.get('avatar').execute(message, taggedUser, args)
+	}
+	if(command === "userinfo") {
+		client.commands.get('userinfo').execute(message, taggedUser, args)
+	}
 	if(message.content === 'snipeedit') {
 		client.commands.get('snipeedit').execute(message, args, editedMessage, editedMessageAuthor, editedMessageAvatar)
 	}
@@ -59,7 +67,7 @@ client.on('message', async  message => {
 	if(message.content === prefix + 'invite') {
 		client.commands.get('invite').execute(message, args)
 	}
-	if(message.content ===  'e!info') {
+	if(message.content === prefix + 'info') {
 		client.commands.get('info').execute(message, args, client)
 	}
 	if(message.content === prefix + 'help') {
@@ -68,7 +76,7 @@ client.on('message', async  message => {
 	if(message.content === 'snipe') {
 		client.commands.get('snipe').execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar)
 	}
-	if(command === 'changeprefix') {
+	if(command ===  'changeprefix') {
 		client.commands.get('changeprefix').execute(message, args)
 		}
 	console.log(prefix)

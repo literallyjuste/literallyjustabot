@@ -10,15 +10,7 @@ if(!message.mentions.users.size) {
 }
 if(taggedUser.id === "632963925419491373") {
 message.delete(1000)
-message.channel.send({embed: {
-color: 0x32353E,
-title: userinput,
-author: {
-  icon_url: "https://cdn.discordapp.com/attachments/632971263718981636/640666397810098197/833863.png",
-  name: 'literallyjustabot'
-}
-}
-});
+message.channel.send(userinput)
 } else {
 message.delete(1000)
 message.channel.send({embed: {

@@ -2,6 +2,17 @@ const fs = require('fs');
 module.exports = {
   name: 'userinfo',
   execute(message, taggedUser, args) {
+    var authorNick = message.member.nickname;
+    if (!message.mentions.users.size) {
+      if(message.member.nickname === null) {
+        authorNick = "No nickname on this server"
+      } else {
+        var taggedNick = taggedUser.nickname
+        if (taggedUser.nickname === undefined) {
+          taggedNick = "No nickname on this server"
+        }
+      }
+    }
     var formatDate = function(date) {
       return new Intl.DateTimeFormat('de-DE').format(date)
     }
@@ -25,7 +36,11 @@ module.exports = {
       },
       {
         name: "Nickname: ",
-        value: ""+message.member.nickname+"",
+        value: ""+authorNick+"",
+      },
+      {
+        name: "Avatar URL",
+        value: "[Click Here!]("+message.author.avatarURL+")",
       },
       {
         name: "Account created on ",
@@ -55,11 +70,11 @@ module.exports = {
         },
         {
           name: "Nickname: ",
-          value: ""+taggedUser.nickname+"",
+          value: ""+taggedNick+"",
         },
         {
-          name: "Avatar URL: ",
-          value: ""+taggedUser.avatarURL+"",
+          name: "Avatar URL",
+          value: "[Click Here!]("+taggedUser.avatarURL+")",
         },
         {
           name: "Account created on ",

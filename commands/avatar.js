@@ -6,8 +6,19 @@ execute(message, taggedUser, args) {
   let prefix = prefixes[message.guild.id].prefixes
   if(!message.content.startsWith(prefix)||message.author.bot) return;
   if(!message.mentions.users.size) {
-    message.channel.send(message.author.avatarURL)
-  } else {
-    message.channel.send(taggedUser.avatarURL)
+    message.channel.send({embed: {
+      title: message.author.username + "#" + message.author.discriminator,
+      author: `test`,
+      image: {
+        url: message.author.avatarURL,
+      },
+
+  }})} else {
+    message.channel.send({embed: {
+      title: taggedUser.username + "#" + taggedUser.discriminator,
+      image: {
+        url: taggedUser.avatarURL,
+      },
+    }})
   }
 }}

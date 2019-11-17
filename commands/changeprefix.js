@@ -6,7 +6,7 @@ module.exports = {
     if(!message.member.hasPermission('ADMINISTRATOR')) {
       message.reply("Sorry, you don't have enough permissions.")
     }
-    if(!args[0] || args[0 == "help"]) return message.reply("Do <prefix>changeprefix <desired prefix>")
+    if(!args[0] || args[0 == "help"]) return message.reply("Do <prefix> changeprefix <desired prefix>")
     let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
 
     prefixes[message.guild.id] = {
