@@ -12,11 +12,11 @@ module.exports = {
     message.channel.send({embed: {
     color: 0x8DEEEE,
 		fields: [{
-			name: "Current Server",
+			name: "**Current Server**",
 			value: "```md\n<Members:  "+message.guild.memberCount+">\n<ServerID: "+message.guild.id+">```",
 		},
 		{
-			name: "Bot Information",
+			name: "**Bot Information**",
 			value: "```md\n<Updated_On:  "+client.readyAt+">\n<Uptime:     "+uptimee+">\n<Version:	0.4.0>```",
 		},
 	],

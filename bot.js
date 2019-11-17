@@ -19,6 +19,7 @@ var editedMessage;
 var editedMessageAuthor;
 var editedMessageAvatar;
 var updatedMessage;
+var deletedMessageInfo;
 const hook = new Discord.WebhookClient('640663762122178560', '-9QzgVVZQ-k3Wg-QwgEKQjtxIWV1Y9l4RcRUJy_f2MwdMej6dJD6Ro1eiUkd8kT9Dqlx');
 //var prefix = "e!"
 
@@ -31,6 +32,8 @@ client.on("messageDelete", (messageDelete) => {
 	deletedMessageAvatar = `${messageDelete.author.avatarURL}`;
 	deletedMessageAuthor = `${messageDelete.author.id}`;
 	deletedMessage = ` **Message sent by @${messageDelete.author.username}** \n  "${messageDelete.content}"`;
+	deletedMessageInfo = messageDelete;
+	console.log(messageDelete)
 });
 
 
@@ -74,7 +77,7 @@ client.on('message', async  message => {
 		client.commands.get('help').execute(message, args)
 	}
 	if(message.content === 'snipe') {
-		client.commands.get('snipe').execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar)
+		client.commands.get('snipe').execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar, deletedMessageInfo)
 	}
 	if(command ===  'changeprefix') {
 		client.commands.get('changeprefix').execute(message, args)
