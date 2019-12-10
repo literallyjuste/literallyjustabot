@@ -2,8 +2,9 @@ const fs = require('fs');
 module.exports = {
   name: 'userinfo',
   execute(message, taggedUser, args) {
+    console.log(taggedUser)
     var authorNick = message.member.nickname;
-    if (!message.mentions.users.size) {
+/*    if (!message.mentions.users.size) {
       if(message.member.nickname === null) {
         authorNick = "No nickname on this server"
       } else {
@@ -12,7 +13,7 @@ module.exports = {
           taggedNick = "No nickname on this server"
         }
       }
-    }
+    }*/
     var formatDate = function(date) {
       return new Intl.DateTimeFormat('de-DE').format(date)
     }
@@ -36,7 +37,7 @@ module.exports = {
       },
       {
         name: "Nickname: ",
-        value: ""+authorNick+"",
+        value: ""+message.member.nickname+"",
       },
       {
         name: "Avatar URL",
@@ -54,6 +55,7 @@ module.exports = {
       }
     })
   } else {
+        var taggedNick = taggedUser.nickname
         message.channel.send({embed: {
         color: 0x35553E,
         thumbnail: {
@@ -70,7 +72,7 @@ module.exports = {
         },
         {
           name: "Nickname: ",
-          value: ""+taggedNick+"",
+          value: ""+taggedUser.username+"",
         },
         {
           name: "Avatar URL",
