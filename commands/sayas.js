@@ -3,7 +3,7 @@ name: 'sayas',
 execute(message, args, prefix, taggedUser) {
 if(!message.content.startsWith(prefix)||message.author.bot) return;
 var input = message.content
-var userinput = input.substr(11)
+var userinput = input.substr(12)
 userinput = userinput.substr(taggedUser.id.length)
 if(!message.mentions.users.size) {
   return message.reply('tag a user to impersonate')

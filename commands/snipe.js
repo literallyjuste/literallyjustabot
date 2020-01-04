@@ -1,8 +1,9 @@
 const fs = require('fs');
 module.exports = {
   name: 'snipe',
-  execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar, deletedMessageInfo) {
+  execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar, deletedMessageInfo, messageDelete) {
     //message.delete(1000);
+    console.log(message)
     let snipess = JSON.parse(fs.readFileSync("./deletionlog.json", "utf8"))
     if(!snipess[message.guild.id]) {
       snipess[message.guild.id] = {
