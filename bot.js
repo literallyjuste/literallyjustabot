@@ -82,6 +82,12 @@ client.on('message', async  message => {
 	if(command ===  'changeprefix') {
 		client.commands.get('changeprefix').execute(message, args)
 		}
+	if(command === 'github') {
+		message.channel.send('https://github.com/literallyjuste/literallyjustabot')
+	}
+	if(message.content === 'e!prefix') {
+		message.channel.send("The current prefix is \"" + prefix + "\"")
+	}
 	console.log(prefix)
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
