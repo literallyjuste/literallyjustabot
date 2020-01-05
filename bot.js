@@ -88,6 +88,9 @@ client.on('message', async  message => {
 	if(message.content === 'e!prefix') {
 		message.channel.send("The current prefix is \"" + prefix + "\"")
 	}
+	if(command === 'purge'){
+		client.commands.get('purge').execute(message, args)
+	}
 	console.log(prefix)
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
