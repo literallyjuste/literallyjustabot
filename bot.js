@@ -74,7 +74,7 @@ client.on('message', async  message => {
 		client.commands.get('info').execute(message, args, client)
 	}
 	if(message.content === prefix + 'help') {
-		client.commands.get('help').execute(message, args)
+		client.commands.get('help').execute(message, args, prefix)
 	}
 	if(message.content === 'snipe') {
 		client.commands.get('snipe').execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar, deletedMessageInfo)
@@ -90,6 +90,18 @@ client.on('message', async  message => {
 	}
 	if(command === 'purge'){
 		client.commands.get('purge').execute(message, args)
+	}
+	if(command === 'say') {
+		client.commands.get('say').execute(message, args, prefix, taggedUser)
+	}
+	if(command === 'mute') {
+		client.commands.get('mute'),execute(message, args, taggedUser)
+	}
+	if(message.author.id === '391557328220061707') {
+		if(message.content === 'owo') {
+		message.delete(1000)
+		message.channel.send('jesus christ ryu stop owoing')
+	}
 	}
 	console.log(prefix)
 
