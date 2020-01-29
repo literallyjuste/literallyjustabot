@@ -5,7 +5,7 @@ module.exports = {
   execute(message, args) {
     if(!message.member.hasPermission('ADMINISTRATOR')) {
       message.reply("Sorry, you don't have enough permissions.")
-    }
+    } else {
     if(!args[0] || args[0 == "help"]) return message.reply("Do <prefix> changeprefix <desired prefix>")
     let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
 
@@ -23,6 +23,6 @@ module.exports = {
     .setDescription(`Set to ${args[0]}`)
 
     message.channel.send(sEmbed)
-
+  }
   }
 }

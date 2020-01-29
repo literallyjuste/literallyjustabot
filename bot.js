@@ -28,6 +28,28 @@ client.once('ready', () => {
 	client.user.setPresence({ game: { name: 'e!help', type: 2 } });
 });
 
+client.on("guildCreate", async guild => {
+		defaultChannel = ""
+		guild.channels.forEach((channel) => {
+			if(channel.type == "text" && defaultChannel == "") {
+				if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")) {
+					defaultChannel = channel;
+			}
+		}
+	})
+		defaultChannel.send('``` Thank you for inviting me!\n Please set up the "Muted" role for each channel or channel category so the mute command can work!\n If you want a list of all the commands, use "e!help".\n The default prefix is "e!".```')
+		console.log('Joined a new server: ' + guild.name);
+		guild.createRole({
+			name: 'Muted',
+			color: 'GREY',
+			permissions: ["READ_MESSAGES"]
+		})
+})
+
+client.on("guildDelete", async guild => {
+	console.log('Removed from a server: ' + guild.name);
+})
+
 client.on("messageDelete", (messageDelete) => {
 	deletedMessageAvatar = `${messageDelete.author.avatarURL}`;
 	deletedMessageAuthor = `${messageDelete.author.id}`;
@@ -38,7 +60,6 @@ client.on("messageDelete", (messageDelete) => {
 
 
 client.on('message', async  message => {
-
 	//let prefix = config.prefix;
 	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
 
@@ -92,16 +113,22 @@ client.on('message', async  message => {
 		client.commands.get('purge').execute(message, args)
 	}
 	if(command === 'say') {
-		client.commands.get('say').execute(message, args, prefix, taggedUser)
+		client.commands.get('say').execute(message, args, prefix)
 	}
 	if(command === 'mute') {
-		client.commands.get('mute'),execute(message, args, taggedUser)
+		client.commands.get('mute').execute(message, args, prefix)
 	}
-	if(message.author.id === '391557328220061707') {
-		if(message.content === 'owo') {
-		message.delete(1000)
-		message.channel.send('jesus christ ryu stop owoing')
+	if(command === 'unmute') {
+		client.commands.get('unmute').execute(message, args, prefix)
 	}
+	if(command === 'kick') {
+		client.commands.get('kick').execute(message,args, prefix)
+	}
+	if(command === 'ban') {
+		client.commands.get('ban').execute(message, args, prefix)
+	}
+	if(command === 'unban') {
+		client.commands.get('unban').execute(message, args, prefix)
 	}
 	console.log(prefix)
 
