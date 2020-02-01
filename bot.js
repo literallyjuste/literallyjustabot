@@ -3,13 +3,15 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 let config = require('./config.json')
+const ytdl = require('ytdl-core')
+const queue = new Map();
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
-
+const Client = require('./client/client.js');
 
 var ping;
 var deletedMessage;
@@ -125,11 +127,23 @@ client.on('message', async  message => {
 		client.commands.get('kick').execute(message,args, prefix)
 	}
 	if(command === 'ban') {
-		client.commands.get('ban').execute(message, args, prefix)
+		client.commands.get('ban').execute(message, args, prefix, client)
 	}
 	if(command === 'unban') {
 		client.commands.get('unban').execute(message, args, prefix)
 	}
+	if (command === 'play') {
+ 		client.commands.get('play').execute(message)
+	}
+	/*if(command === 'skip') {
+ 		client.commands.get('skip').execute(message)
+	}
+	if(command === 'stop') {
+ 		client.commands.get('stop').execute(message)
+	}
+	if(command === 'nowplaying' || 'np') {
+		client.commands.get('nowplaying').execute(message)
+	}*/
 	console.log(prefix)
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {

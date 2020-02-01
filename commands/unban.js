@@ -13,6 +13,7 @@ module.exports = {
       } else {
       message.guild.unban(args[0])
       message.channel.send(`<@${args[0]}> has been unbanned from ${message.guild.name}.`)
+      .catch(message.reply('I don\'t have enough permissions for that.'))
       }
     }
   }

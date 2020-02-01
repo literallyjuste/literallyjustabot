@@ -17,7 +17,7 @@ module.exports = {
     userinput = userinput.substr(member.id.length)
     if(!muteRole) return message.reply('You need to to create a role called "Muted"')
     if(!time) return member.addRole(muteRole.id) && message.channel.send(`${member.user.tag} has been muted.`)
-    member.addRole(muteRole.id);
+    member.addRole(muteRole.id)
     message.channel.send(`${member.user.tag} has been muted for ${ms(ms(time, {long: true}))}.`)
     setTimeout(function() {
       member.removeRole(muteRole.id);

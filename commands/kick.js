@@ -11,8 +11,12 @@ module.exports = {
       if(!message.mentions.users.size) {
         return message.reply('tag a user to kick')
       }
-      member.kick()
-      message.channel.send(`${member.user.tag} has been kicked from the server.`)
+      member.kick().then((member) => {
+          message.channel.send(`${member.user.tag} has been kicked from ${message.guild.name}.`)
+      })
+      .catch(() => {
+        message.reply('I don\'t have enough permissions for that.')
+      })
     }
   }
 }
