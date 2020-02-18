@@ -37,6 +37,15 @@ client.on("guildCreate", async guild => {
 				if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")) {
 					defaultChannel = channel;
 			}
+			let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
+
+			prefixes[guild.id] = {
+				prefixes: 'e!'
+			}
+
+			fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
+				if (err) console.log(err)
+			})
 		}
 	})
 		defaultChannel.send('``` Thank you for inviting me!\n Please set up the "Muted" role for each channel or channel category so the mute command can work!\n If you want a list of all the commands, use "e!help".\n The default prefix is "e!".```')
@@ -62,7 +71,7 @@ client.on("messageDelete", (messageDelete) => {
 
 
 client.on('message', async  message => {
-	//let prefix = config.prefix;
+	//var prefix = config.prefix;
 	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
 
 	console.log(message.content + "  |  ","Channel: #"+message.channel.name,"  | Server: " + message.guild.name)
@@ -132,10 +141,13 @@ client.on('message', async  message => {
 	if(command === 'unban') {
 		client.commands.get('unban').execute(message, args, prefix)
 	}
-	if (command === 'play') {
+	if(command === 'img') {
+		client.commands.get('img').execute(message, args, prefix)
+	}
+	/*if (command === 'play') {
  		client.commands.get('play').execute(message)
 	}
-	/*if(command === 'skip') {
+	if(command === 'skip') {
  		client.commands.get('skip').execute(message)
 	}
 	if(command === 'stop') {

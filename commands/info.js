@@ -17,7 +17,7 @@ module.exports = {
 		},
 		{
 			name: "**Bot Information**",
-			value: "```md\n<Updated_On:  "+client.readyAt+">\n<Uptime:     "+uptimee+">\n<Version:	0.4.0>```",
+			value: "```md\n<Updated_On:  "+client.readyAt+">\n<Uptime:     "+uptimee+">\n<Version:	0.7.0>```",
 		},
 	],
   }

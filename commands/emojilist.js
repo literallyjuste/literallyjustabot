@@ -110,7 +110,7 @@
 	}
 	if (message.content.includes("🤗")) {
 		message.delete(1000); //Supposed to delete message
-		message.channel.send("fuck you, don't send emojis  ");
+		message.channel.send("fuck you, don't send emojis  ￼ Searching ￼ lose yourself");
 	}
 	if (message.content.includes("😏")) {
 		message.delete(1000); //Supposed to delete message
