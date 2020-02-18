@@ -142,7 +142,7 @@ client.on('message', async  message => {
 		client.commands.get('unban').execute(message, args, prefix)
 	}
 	if(command === 'img') {
-		client.commands.get('img').execute(message, args, prefix)
+		client.commands.get('img').execute(message, args, prefix, command)
 	}
 	/*if (command === 'play') {
  		client.commands.get('play').execute(message)
