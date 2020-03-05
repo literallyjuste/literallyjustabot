@@ -84,17 +84,17 @@ client.on('message', async  message => {
 	let prefix = prefixes[message.guild.id].prefixes
 	const args = message.content.slice(prefix.length).split(' ');
 	const commands = args.shift().toLowerCase();
-	if(message.content.startsWith(prefix)){
-		const commandName = client.commands.get(commands).name
-
-	//console.log(message.client)
-	console.log(prefix)
 	if(message.content === 'snipeedit') {
 		client.commands.get('snipeedit').execute(message, args, editedMessage, editedMessageAuthor, editedMessageAvatar)
 	}
 	if(message.content === 'snipe') {
 		client.commands.get('snipe').execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar, deletedMessageInfo)
 	}
+	if(message.content.startsWith(prefix)){
+		const commandName = client.commands.get(commands).name
+
+	//console.log(message.client)
+	console.log(prefix)
 
 	try {
 		client.commands.get(commands).execute(message, args, prefix, commands, client);
