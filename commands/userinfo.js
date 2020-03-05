@@ -1,6 +1,8 @@
 const fs = require('fs');
 module.exports = {
   name: 'userinfo',
+  description: "Displays information about a user.",
+  usage: "<user>",
   execute(message, taggedUser, args) {
     console.log(taggedUser)
     var authorNick = message.member.nickname;

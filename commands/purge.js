@@ -1,6 +1,9 @@
 module.exports = {
   name: "purge",
+  description: "Deletes desired amount of messages.",
+  usage: "[number]",
   execute(message, args) {
+    console.log(args[0])
     var countDeleted = args[0]
     if(!message.member.hasPermission('MANAGE_MESSAGES')) {
       message.reply("Sorry, you don't have enough permissions.")

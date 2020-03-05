@@ -1,6 +1,8 @@
 const req = require('../bot.js')
 module.exports = {
   name: 'info',
+  description: "Displays information about the bot and the server.",
+  usage: "",
   execute(message, args, client) {
     let totalSeconds = (client.uptime / 1000);
     let days = Math.floor(totalSeconds / 86400);

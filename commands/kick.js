@@ -1,5 +1,7 @@
 module.exports = {
   name:'kick',
+  description: "Kicks the mentioned member from the server.",
+  usage: "<user>",
   execute(message, args, prefix) {
     if(!message.member.hasPermission('KICK_MEMBERS')) {
       message.reply("Sorry, you don't have enough permissions.")

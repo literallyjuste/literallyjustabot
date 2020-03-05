@@ -2,3 +2,5 @@ config.json
 prefixes.json
 deletionlog.json
 editlog.json
+emojilist.js
+editedemojilist.js

@@ -1,5 +1,7 @@
 module.exports = {
   name:'unban',
+  description: "Unbans a user.",
+  usage: "[user ID]",
   execute(message, args, prefix) {
     if(!message.member.hasPermission('BAN_MEMBERS')) {
       message.reply("Sorry, you don't have enough permissions.")

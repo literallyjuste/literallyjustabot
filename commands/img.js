@@ -3,6 +3,8 @@ const PixabayPhotos = new PixabayAPI({ apiUrl: "https://pixabay.com/api/" });
 let config = require('../config.json')
 module.exports = {
   name: 'img',
+  description: "Gets an image from pixabay.",
+  usage: "[search query]",
   execute(message, args, prefix, command) {
     var params = {
       key: config.imgAPI,
@@ -15,7 +17,7 @@ module.exports = {
         return;
       }
       if(res.totalHits === 0){
-        message.channel.send('Image not aviable in the Pixabay library.')
+        message.channel.send('Image not available in the Pixabay library.')
       }
       else {
         var rdmImg = res.hits[Math.floor(Math.random() * res.hits.length)]

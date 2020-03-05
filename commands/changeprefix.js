@@ -2,6 +2,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 module.exports = {
   name: "changeprefix",
+  description: "Change the bots prefix for this server.",
+  usage: "[desired prefix]",
   execute(message, args) {
     if(!message.member.hasPermission('ADMINISTRATOR')) {
       message.reply("Sorry, you don't have enough permissions.")

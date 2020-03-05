@@ -1,5 +1,7 @@
 module.exports = {
 name: 'sayas',
+description: 'Pretend to be another user(Currently not working properly)',
+usage: '<user>',
 execute(message, args, prefix, taggedUser) {
 if(!message.content.startsWith(prefix)||message.author.bot) return;
 var input = message.content
@@ -19,8 +21,8 @@ title: userinput,
 author: {
 icon_url: taggedUser.avatarURL,
 name: taggedUser.username,
-}
-}
-});
-}}
+        }
+      }
+    });
+  }}
 }

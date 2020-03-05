@@ -1,6 +1,8 @@
 const fs = require('fs');
 module.exports = {
   name: 'snipeedit',
+  description: "Displays last edited message.",
+  usage: "",
   execute(message, args, editedMessage, editedMessageAuthor, editedMessageAvatar) {
     message.delete(1000);
     let edits = JSON.parse(fs.readFileSync("./editlog.json", "utf8"))

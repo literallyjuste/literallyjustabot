@@ -1,7 +1,11 @@
 const fs = require('fs');
 module.exports = {
 name: 'avatar',
-execute(message, taggedUser, args) {
+aliases: ['icon', 'pfp'],
+description: 'Get the profile picture of a user (or yourself)',
+usage: '<user>',
+execute(message, args) {
+  const taggedUser = message.mentions.users.first()
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
   let prefix = prefixes[message.guild.id].prefixes
   if(!message.content.startsWith(prefix)||message.author.bot) return;

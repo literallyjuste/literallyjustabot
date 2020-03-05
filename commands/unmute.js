@@ -1,5 +1,7 @@
 module.exports = {
   name:'unmute',
+  description: "Unmutes a user.",
+  usage: "<user>",
   execute(message, args, prefix) {
     if(!message.member.hasPermission('MANAGE_ROLES')) {
       message.reply("Sorry, you don't have enough permissions.")

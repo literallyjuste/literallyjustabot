@@ -1,5 +1,7 @@
 module.exports = {
 name: 'say',
+description: "Make the bot say something.",
+usage: "[text]",
 execute(message, args, prefix) {
 if(!message.content.startsWith(prefix)||message.author.bot) return;
 var input = message.content

@@ -1,5 +1,7 @@
 module.exports = {
   name: 'invite',
+  description: "Get the link for the bot.",
+  usage: "",
   execute(message, args) {
     message.channel.send({embed: {
     color: 0x800080,

@@ -1,5 +1,7 @@
 module.exports = {
   name:'ban',
+  description: "Bans the mentioned user permanently.",
+  usage: "<user>",
   execute(message, args, prefix, client) {
     if(!message.member.hasPermission('BAN_MEMBERS')) {
       message.reply("Sorry, you don't have enough permissions.")
