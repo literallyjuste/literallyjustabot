@@ -70,7 +70,6 @@ client.on("messageDelete", (messageDelete) => {
 	deletedMessageAuthor = `${messageDelete.author.id}`;
 	deletedMessage = ` **Message sent by @${messageDelete.author.username}** \n  "${messageDelete.content}"`;
 	deletedMessageInfo = messageDelete;
-	console.log(messageDelete)
 });
 
 
