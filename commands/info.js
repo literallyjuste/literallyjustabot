@@ -3,7 +3,7 @@ module.exports = {
   name: 'info',
   description: "Displays information about the bot and the server.",
   usage: "",
-  execute(message, args, client) {
+  execute(message, args, prefix, commands, client) {
     let totalSeconds = (client.uptime / 1000);
     let days = Math.floor(totalSeconds / 86400);
     let hours = Math.floor(totalSeconds / 3600);
