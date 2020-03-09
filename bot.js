@@ -47,7 +47,7 @@ client.on("guildCreate", async guild => {
 				prefixes: 'e!'
 			}
 
-			fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
+			fs.writeFile("prefixes.json", JSON.stringify(prefixes), (err) => {
 				if (err) console.log(err)
 			})
 		}
@@ -130,9 +130,9 @@ client.on('message', async  message => {
 	setTimeout(() => timestamps.delete(message.author.id), cooldownTime);*/
 }
 
-client.on('messageUpdate', async (oldMessage, newMessage) => {
+client.on('messageUpdate', async (oldMessage, newMessage, messageUpdate) => {
+	if(newMessage.author.bot) return;
 	console.log(`Message "${oldMessage}" edited to "${newMessage}" in ${newMessage.guild.name} | #${newMessage.channel.name}`)
-	if(message.author.bot) return;
 	editedMessage = ` **Message edited by @${newMessage.author.username}** \n  "${oldMessage.content}" was edited to "${newMessage.content}"`;
 	editedMessageAvatar = newMessage.author.avatarURL;
 	editedMessageAuthor = newMessage.author.id;
