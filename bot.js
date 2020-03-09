@@ -22,12 +22,15 @@ var editedMessageAuthor;
 var editedMessageAvatar;
 var updatedMessage;
 var deletedMessageInfo;
-const hook = new Discord.WebhookClient('640663762122178560', '-9QzgVVZQ-k3Wg-QwgEKQjtxIWV1Y9l4RcRUJy_f2MwdMej6dJD6Ro1eiUkd8kT9Dqlx');
 //var prefix = "e!"
 
 client.once('ready', () => {
 	console.log(`Ready! Currently in ${client.guilds.size} servers. Has ${client.users.size} users. Has access to ${client.channels.size} channels.`);
 	client.user.setPresence({ game: { name: 'e!help', type: 2 } });
+});
+
+client.on('error', error => {
+	 console.error('The websocket connection encountered an error:', error);
 });
 
 client.on("guildCreate", async guild => {
@@ -90,9 +93,12 @@ client.on('message', async  message => {
 	if(message.content === 'snipe') {
 		client.commands.get('snipe').execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar, deletedMessageInfo)
 	}
+	if(message.content === 'e!prefix') {
+		client.commands.get('prefix').execute(message, prefix)
+	}
 	if(message.content.startsWith(prefix)){
 		const commandName = client.commands.get(commands).name
-
+		if(message.content === 'e!prefix') return;
 	//console.log(message.client)
 	console.log(prefix)
 
@@ -126,6 +132,7 @@ client.on('message', async  message => {
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
 	console.log(`Message "${oldMessage}" edited to "${newMessage}" in ${newMessage.guild.name} | #${newMessage.channel.name}`)
+	if(message.author.bot) return;
 	editedMessage = ` **Message edited by @${newMessage.author.username}** \n  "${oldMessage.content}" was edited to "${newMessage.content}"`;
 	editedMessageAvatar = newMessage.author.avatarURL;
 	editedMessageAuthor = newMessage.author.id;

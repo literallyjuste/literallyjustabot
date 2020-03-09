@@ -8,7 +8,7 @@ const data = []
 const { commands } = message.client
 
 if(!args.length) {
-data.push(commands.map(command => `**${prefix + command.name} ${command.usage}**\n${command.description}`).join('\n'));
+data.push(commands.filter(command => { return command.name !== 'snipe' && command.name !== 'snipeedit' && command.name !== 'sayas' }).map(command => `**${prefix + command.name} ${command.usage}**\n${command.description}`).join('\n'));
 //data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
 
 return message.channel.send(data, { split: true })

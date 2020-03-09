@@ -1,6 +1,6 @@
 module.exports = {
   name:'mute',
-  description: "Mutes the mentioned user for max. 14 days.(Mute role might have to be set up.\nExample: e!mute @user 2h)",
+  description: "Mutes the mentioned user for max. 24.8 days.(Mute role might have to be set up.\nExample: e!mute @user 2h)",
   usage: "<user> [time]",
   execute(message, args, prefix) {
     if(!message.member.hasPermission('MANAGE_ROLES')) {

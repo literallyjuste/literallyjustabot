@@ -2,8 +2,7 @@ module.exports =  {
   name: "prefix",
   description: "Tells you the bots current prefix for this server.",
   usage: '',
-  cooldown: 5,
-  execute(message) {
+  execute(message, prefix) {
 		message.channel.send("The current prefix is \"" + prefix + "\"")
   }
 }
