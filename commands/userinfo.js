@@ -3,8 +3,7 @@ module.exports = {
   name: 'userinfo',
   description: "Displays information about a user.",
   usage: "<user>",
-  execute(message, taggedUser, args) {
-    console.log(taggedUser)
+  execute(message, args, prefix, commands, client, taggedUser) {
     var authorNick = message.member.nickname;
 /*    if (!message.mentions.users.size) {
       if(message.member.nickname === null) {
@@ -17,12 +16,10 @@ module.exports = {
       }
     }*/
     var formatDate = function(date) {
-      return new Intl.DateTimeFormat('de-DE').format(date)
+      return new Intl.DateTimeFormat('en-US').format(date)
     }
-    let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
-    let prefix = prefixes[message.guild.id].prefixes
     if(!message.content.startsWith(prefix)||message.author.bot) return;
-    if(!message.mentions.users.size) {
+    if(!message.mentions.users.size && typeof taggedUser === null) {
       message.channel.send({embed: {
       color: 0x35553E,
       thumbnail: {

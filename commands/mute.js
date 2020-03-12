@@ -2,7 +2,7 @@ module.exports = {
   name:'mute',
   description: "Mutes the mentioned user for max. 24.8 days.(Mute role might have to be set up.\nExample: e!mute @user 2h)",
   usage: "<user> [time]",
-  execute(message, args, prefix) {
+  execute(message, args, prefix, commands, client, taggedUser) {
     if(!message.member.hasPermission('MANAGE_ROLES')) {
       message.reply("Sorry, you don't have enough permissions.")
     } else {
@@ -11,7 +11,7 @@ module.exports = {
     var member = message.mentions.members.first();
     var input = message.content
     var userinput = input.substr(12)
-    if(!message.mentions.users.size) {
+    if(!message.mentions.users.size && typeof taggedUser === null) {
       return message.reply('tag a user to mute')
     }
     let time = args[1]

@@ -2,7 +2,7 @@ module.exports = {
   name:'ban',
   description: "Bans the mentioned user permanently.",
   usage: "<user>",
-  execute(message, args, prefix, client) {
+  execute(message, args, prefix, commands, client, taggedUser) {
     if(!message.member.hasPermission('BAN_MEMBERS')) {
       message.reply("Sorry, you don't have enough permissions.")
     } else {
@@ -11,7 +11,7 @@ module.exports = {
       var input = message.content
       var userinput = input.substr(12)
       if(!member.banable) return message.channel.send("Can't ban this user.")
-      if(!message.mentions.users.size) {
+      if(!message.mentions.users.size && typeof taggedUser === null) {
         return message.reply('tag a user to ban')
       }
       member.ban().then((member) => {

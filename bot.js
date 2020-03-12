@@ -76,16 +76,15 @@ client.on("messageDelete", (messageDelete) => {
 client.on('message', async  message => {
 	//var prefix = config.prefix;
 	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
-
 	console.log(message.content + "  |  ","Channel: #"+message.channel.name,"  | Server: " + message.guild.name)
-	//var taggedUser = message.mentions.users.first();
 	if(!prefixes[message.guild.id]) {
 		prefixes[message.guild.id] = {
 			prefixes: config.prefix
 		}}
-	let prefix = prefixes[message.guild.id].prefixes
+	var prefix = prefixes[message.guild.id].prefixes
 	const args = message.content.slice(prefix.length).split(' ');
 	const commands = args.shift().toLowerCase();
+	var taggedUser = message.mentions.users.first() || client.users.find(taggedUser => taggedUser.username === args.join(" "))
 	if(message.content === 'snipeedit') {
 		client.commands.get('snipeedit').execute(message, args, editedMessage, editedMessageAuthor, editedMessageAvatar)
 	}
@@ -102,7 +101,7 @@ client.on('message', async  message => {
 	console.log(prefix)
 
 	try {
-		client.commands.get(commands).execute(message, args, prefix, commands, client);
+		client.commands.get(commands).execute(message, args, prefix, commands, client, taggedUser);
 	} catch (error) {
 		console.error(error)
 	}
