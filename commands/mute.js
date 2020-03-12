@@ -7,9 +7,11 @@ module.exports = {
       message.reply("Sorry, you don't have enough permissions.")
     } else {
     const ms = require("ms");
+    console.log(taggedUser)
     if(!message.content.startsWith(prefix)||message.author.bot) return;
-    var member = message.mentions.members.first();
+    var member = taggedUser
     var input = message.content
+    console.log(member)
     var userinput = input.substr(12)
     if(!message.mentions.users.size && typeof taggedUser === null) {
       return message.reply('tag a user to mute')
