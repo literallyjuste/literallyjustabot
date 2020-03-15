@@ -6,7 +6,7 @@ description: 'Get the profile picture of a user (or yourself)',
 usage: '<user>',
 execute(message, args, prefix, commandName, client, taggedUser) {
   if(!message.content.startsWith(prefix)||message.author.bot) return;
-  if(!message.mentions.users.size && typeof taggedUser === null) {
+  if(!taggedUser) {
     message.channel.send({embed: {
       title: message.author.username + "#" + message.author.discriminator,
       author: `test`,
