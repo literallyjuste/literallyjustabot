@@ -33,6 +33,10 @@ client.on('error', error => {
 	 console.error('The websocket connection encountered an error:', error);
 });
 
+client.on('disconnect', disconnect => {
+	console.error('The websocket has been disconnected: ', disconnect)
+})
+
 client.on("guildCreate", async guild => {
 		console.log(guild.id)
 		defaultChannel = ""
@@ -83,7 +87,8 @@ client.on('message', async  message => {
 		}}
 	var prefix = prefixes[message.guild.id].prefixes
 	const args = message.content.slice(prefix.length).split(' ');
-	const commands = args.shift().toLowerCase();
+	const commandName = args.shift().toLowerCase();
+	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 	var taggedUser = message.mentions.users.first() || client.users.find(taggedUser => taggedUser.username === args.join(" "))
 	if(message.content === 'snipeedit') {
 		client.commands.get('snipeedit').execute(message, args, editedMessage, editedMessageAuthor, editedMessageAvatar)
@@ -95,16 +100,17 @@ client.on('message', async  message => {
 		client.commands.get('prefix').execute(message, prefix)
 	}
 	if(message.content.startsWith(prefix)){
-		const commandName = client.commands.get(commands).name
+		//const commandName = client.commands.get(commands).name
 		if(message.content === 'e!prefix') return;
 	//console.log(message.client)
 	console.log(prefix)
 
 	try {
-		client.commands.get(commands).execute(message, args, prefix, commands, client, taggedUser);
+		command.execute(message, args, prefix, commandName, client, taggedUser, command)
 	} catch (error) {
 		console.error(error)
 	}
+	if(!command) return;
 	//const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
 	/*if(!cooldowns.has(commands.name)) {
 		cooldowns.set(commands.name, new Discord.Collection())

@@ -2,7 +2,6 @@ const fs = require('fs');
 module.exports = {
   name: 'snipe',
   description: "Displays last deleted message.",
-  usage: "",
   execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar, deletedMessageInfo, messageDelete) {
     //message.delete(1000);
     //console.log(message)

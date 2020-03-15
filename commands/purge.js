@@ -2,6 +2,7 @@ module.exports = {
   name: "purge",
   description: "Deletes desired amount of messages.",
   usage: "[number]",
+  aliases: ['delete'],
   execute(message, args) {
     console.log(args[0])
     var countDeleted = args[0]

@@ -5,7 +5,8 @@ module.exports = {
   name: 'img',
   description: "Gets an image from pixabay.",
   usage: "[search query]",
-  execute(message, args, prefix, command) {
+  aliases: ['image'],
+  execute(message, args, prefix, commandName) {
     var params = {
       key: config.imgAPI,
       q: args.join(" "),

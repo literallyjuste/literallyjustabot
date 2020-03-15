@@ -3,7 +3,7 @@ module.exports = {
   name: 'userinfo',
   description: "Displays information about a user.",
   usage: "<user>",
-  execute(message, args, prefix, commands, client, taggedUser) {
+  execute(message, args, prefix, commandName, client, taggedUser) {
     var authorNick = message.member.nickname;
 /*    if (!message.mentions.users.size) {
       if(message.member.nickname === null) {

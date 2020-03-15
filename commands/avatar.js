@@ -4,7 +4,7 @@ name: 'avatar',
 aliases: ['icon', 'pfp'],
 description: 'Get the profile picture of a user (or yourself)',
 usage: '<user>',
-execute(message, args, prefix, commands, client, taggedUser) {
+execute(message, args, prefix, commandName, client, taggedUser) {
   if(!message.content.startsWith(prefix)||message.author.bot) return;
   if(!message.mentions.users.size && typeof taggedUser === null) {
     message.channel.send({embed: {

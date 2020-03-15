@@ -2,7 +2,7 @@ module.exports = {
   name:'mute',
   description: "Mutes the mentioned user for max. 24.8 days.(Mute role might have to be set up.\nExample: e!mute @user 2h)",
   usage: "<user> [time]",
-  execute(message, args, prefix, commands, client, taggedUser) {
+  execute(message, args, prefix, commandName, client, taggedUser) {
     if(!message.member.hasPermission('MANAGE_ROLES')) {
       message.reply("Sorry, you don't have enough permissions.")
     } else {
