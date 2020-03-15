@@ -12,6 +12,7 @@ module.exports = {
     if(isNaN(args[0])) {
       message.channel.send('Please add valid numbers.')
     } else {
+      message.delete()
       message.channel.bulkDelete(args[0]).then((countDeleted) => {
           message.channel.send(`${args[0]} messages deleted.`)
       })
