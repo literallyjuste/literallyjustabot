@@ -90,6 +90,7 @@ client.on('message', async  message => {
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 	var taggedUser = message.mentions.users.first() || client.users.find(taggedUser => taggedUser.username === args.join(" "))
+
 	if(message.content === 'snipeedit') {
 		client.commands.get('snipeedit').execute(message, args, editedMessage, editedMessageAuthor, editedMessageAvatar)
 	}
