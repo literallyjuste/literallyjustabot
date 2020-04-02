@@ -18,6 +18,7 @@ module.exports = {
     if(args[0].startsWith('<:')) {
       attachment = new Attachment('https://cdn.discordapp.com/emojis/' + emojiID + '.png')
     }
+    message.delete(1000)
     message.channel.send(attachment)
   }
 }
