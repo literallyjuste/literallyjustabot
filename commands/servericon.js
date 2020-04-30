@@ -9,7 +9,7 @@ execute(message, args) {
       title: message.guild.name,
       author: `test`,
       image: {
-        url: message.guild.iconURL,
+        url: message.guild.iconURL(),
       },
 
   }})}

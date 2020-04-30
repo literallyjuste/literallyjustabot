@@ -6,6 +6,7 @@ let config = require('./config.json')
 const ytdl = require('ytdl-core')
 const queue = new Map();
 client.commands = new Discord.Collection();
+const axios = require('axios')
 const commandsFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandsFiles) {
 	const commands = require(`./commands/${file}`);
@@ -69,13 +70,13 @@ client.on("guildDelete", async guild => {
 	console.log('Removed from a server: ' + guild.name);
 })
 
+
 client.on("messageDelete", (messageDelete) => {
 	deletedMessageAvatar = `${messageDelete.author.avatarURL}`;
 	deletedMessageAuthor = `${messageDelete.author.id}`;
 	deletedMessage = ` **Message sent by @${messageDelete.author.username}** \n  "${messageDelete.content}"`;
 	deletedMessageInfo = messageDelete;
 });
-
 
 client.on('message', async  message => {
 	//var prefix = config.prefix;
@@ -85,6 +86,16 @@ client.on('message', async  message => {
 		prefixes[message.guild.id] = {
 			prefixes: config.prefix
 		}}
+	if(message.attachments.first()) {
+	axios({
+  method: 'get',
+  url: message.attachments.first().url,
+  responseType: 'stream'
+	})
+  .then(function (response) {
+    response.data.pipe(fs.createWriteStream('deletedImage.png'))
+  });
+}
 	var prefix = prefixes[message.guild.id].prefixes
 	const args = message.content.slice(prefix.length).split(' ');
 	const commandName = args.shift().toLowerCase();
