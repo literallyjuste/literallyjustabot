@@ -7,7 +7,7 @@ module.exports = {
   execute(message, args, deletedMessage, deletedMessageAuthor, deletedMessageAvatar, deletedMessageInfo, messageDelete) {
     //message.delete(1000);
     //console.log(message)
-    console.log(deletedMessageInfo.attachments.first().url)
+    console.log(deletedMessageInfo.attachments.first())
     let snipess = JSON.parse(fs.readFileSync("./deletionlog.json", "utf8"))
     if(!snipess[message.guild.id]) {
       snipess[message.guild.id] = {
@@ -22,6 +22,7 @@ module.exports = {
     })*/
 
     console.log(snipes)
+    if(deletedMessageInfo.attachments.first()) {
     const deletedMessageEmbed = new Discord.RichEmbed()
       .setColor(800080)
       .setTitle(snipes)
@@ -30,5 +31,14 @@ module.exports = {
       .setTimestamp(new Date())
       .setThumbnail(deletedMessageAvatar)
     message.channel.send(deletedMessageEmbed)
+    
+  } else {
+    const deletedMessageEmbed = new Discord.RichEmbed()
+      .setColor(800080)
+      .setTitle(snipes)
+      .setTimestamp(new Date())
+      .setThumbnail(deletedMessageAvatar)
+    message.channel.send(deletedMessageEmbed)
+  }
   }
 }
