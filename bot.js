@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 let config = require('./config.json')
 const ytdl = require('ytdl-core')
+const rp = require('request-promise')
 const queue = new Map();
 client.commands = new Discord.Collection();
 const axios = require('axios')
@@ -28,6 +29,7 @@ var deletedMessageInfo;
 client.once('ready', () => {
 	console.log(`Ready! Currently in ${client.guilds.size} servers. Has ${client.users.size} users. Has access to ${client.channels.size} channels.`);
 	client.user.setPresence({ game: { name: 'e!help', type: 2 } });
+
 });
 
 client.on('error', error => {
@@ -37,6 +39,19 @@ client.on('error', error => {
 client.on('disconnect', disconnect => {
 	console.error('The websocket has been disconnected: ', disconnect)
 })
+
+function downloadUpdater() {
+	var drpepperguild = client.guilds.find(guild => guild.id === '696804249555959858');
+	rp('http://javid.ddns.net/tModLoader/tools/ranksbysteamid.php?steamid64=76561198285411831')
+		.then(function(htmlString) {
+			downloadCount = htmlString.split("<td>Cool Music Boxes</td><td>")[1].split("</td>")[0]
+			drpepperguild.channels.get("712202920946303009").setName('Downloads: ' + downloadCount)
+		})
+		.catch(function(err) {
+			console.log(err)
+		})
+}
+setInterval(downloadUpdater, 30*1000)
 
 client.on("guildCreate", async guild => {
 		console.log(guild.id)
