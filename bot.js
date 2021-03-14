@@ -1,5 +1,5 @@
-//632971263718981632
 const fs = require('fs');
+const Booru = require('booru')
 const Discord = require('discord.js');
 const client = new Discord.Client();
 let config = require('./config.json')
@@ -39,6 +39,17 @@ client.on('error', error => {
 client.on('disconnect', disconnect => {
 	console.error('The websocket has been disconnected: ', disconnect)
 })
+
+/*function GayAnimeGirls() {
+	var privserv = client.guilds.find(guild => guild.id === '644285162670129162')
+	Booru.search('safebooru', ['yuri'], {limit: 1, random:true})
+	.then(posts => {
+		for (let post of posts)
+			privserv.channels.get('680922788042637347').send(post.fileUrl)
+	})
+	
+}
+setInterval(GayAnimeGirls, 600*1000)*/
 
 function downloadUpdater() {
 	var drpepperguild = client.guilds.find(guild => guild.id === '696804249555959858');
@@ -95,6 +106,7 @@ client.on("messageDelete", (messageDelete) => {
 
 client.on('message', async  message => {
 	//var prefix = config.prefix;
+	if(message.content.includes === '🤠') return message.delete(1000)
 	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"))
 	console.log(message.content + "  |  ","Channel: #"+message.channel.name,"  | Server: " + message.guild.name)
 	if(!prefixes[message.guild.id]) {

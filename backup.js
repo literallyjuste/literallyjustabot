@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const { prefix, token } = require('./auth.json');
+const { prefix, token } = require('./config.json');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
@@ -154,23 +154,10 @@ client.on('message', async  message => {
 	],
   }
 });
-	}
-	if(message.content === 'snipe') {
-		message.channel.send({embed: {
-    color: 800080,
-    title: deletedMessage,
-    timestamp: new Date(),
-		thumbnail: {
-			url: deletedMessageAvatar,
-		},
-		footer: {
-      text: `Author: ${deletedMessageAuthor}`
-    }
-  }
-});
+	
 	}
 
-/*	if (message.content === 'test')
+	if (message.content === 'test')
 		message.channel.send('confirmed')
 	if (message.content.includes("😀")) {
 		message.delete(1000); //Supposed to delete message
@@ -443,7 +430,28 @@ client.on('message', async  message => {
 	if (message.content.includes("😴")) {
 		message.delete(1000); //Supposed to delete message
 		message.channel.send("fuck you, don't send emojis  ");
-	}*/
+	}
+	if (message.content.includes("👁️")) {
+		message.delete(1000);
+	}
+	if (message.content.includes('👄')) {
+		message.delete(1000);
+	}
+	if (message.content.includes('👀')) {
+		message.delete(1000);
+	}
+	if (message.content.includes('💋')) {
+		message.delete(1000);
+	}
+	if (message.content.includes('😾')) {
+		message.delete(1000);
+	}
+	if (message.content.includes('😼')) {
+		message.delete(1000);
+	}
+	if (message.content.includes('👅')) {
+		message.delete(1000);
+	}
 client.on('messageUpdate', async (oldMessage, newMessage) => {
 	console.log(`Message "${oldMessage}" edited to "${newMessage}" in ${newMessage.guild.name} | #${newMessage.channel.name}`)
 	editedMessage = ` **Message edited by @${newMessage.author.username}** \n  "${oldMessage.content}" was edited to "${newMessage.content}"`;
