@@ -14,7 +14,7 @@
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "ffmpeg": "0.0.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ms": "^2.1.2",
     "node-pixabayclient": "^1.0.0",
     "opusscript": "0.0.7",
